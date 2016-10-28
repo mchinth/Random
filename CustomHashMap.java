@@ -12,7 +12,7 @@ class HashMapCustom<K, V>{
 			this.next = next;
 		}
 	}
-	CustomHashMap (){
+	HashMapCustom (){
 		// create bucket of type obj entry with capacity 
 		table = new Entry[capacity]; 
 	}
