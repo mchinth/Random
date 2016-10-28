@@ -16,6 +16,7 @@ class HashMapCustom<K, V>{
 		// create bucket of type obj entry with capacity 
 		table = new Entry[capacity]; 
 	}
+
 	//complexity - varies tarverse linkedlist
 	public void put(K newkey, V value){
 		// error checking , else returns divideByZero error in hash(newkey) call 
@@ -127,34 +128,56 @@ exists  , in such a case replace it will new entry and return
 			}
 		}
 	}
+
+	 public K contains(K key){
+        int index = hash(key);
+        if(table[index] == null){
+         return null;
+        }else{
+         Entry<K,V> temp = table[index];
+         while(temp!= null){
+             if(temp.key.equals(key))
+                 return key;
+             temp = temp.next; //return value corresponding to key.
+         }         
+         return null;   //returns null if key is not found.
+        }
+    }
+ 
+ 
+
+	public boolean  containsObj(Entry<K,V> obj){
+		int index = hash(obj.key);
+		if(table[index] == null){
+			return false;
+		}
+		else{
+			Entry<K,V> temp = table[index];
+			while(temp != NULL){
+				if(temp.key.equals(obj.key) ){
+					if(temp.value.equals(obj.value)){
+						return true;
+					}
+					else
+						return false;
+				}
+				temp = temp.next;
+			}
+		}
+		return false;
+	}
+
+	public void displaySet(){
+		for(int i=0;i< capacity;i++){
+			if(table[i]!=NULL){
+				Entry <K,V > temp = table[i];
+				while(temp !=NULL){
+					System.out.prinltn(temp.key);
+					temp = temp.next;
+				}
+			}
+		}
+
+	}
 }
 
-public class CustomHashMap {
-     
-    public static void main(String[] args) {
-           HashMapCustom<Integer, Integer> hashMapCustom = new HashMapCustom<Integer, Integer>();
-           hashMapCustom.put(21, 12);
-           hashMapCustom.put(25, 121);
-           hashMapCustom.put(30, 151);
-           hashMapCustom.put(33, 15);
-           hashMapCustom.put(35, 89);
- 
-           System.out.println("value corresponding to key 21="
-                        + hashMapCustom.get(21));
-           System.out.println("value corresponding to key 51="
-                        + hashMapCustom.get(51));
- 
-           System.out.print("Displaying : ");
-           hashMapCustom.display();
- 
-           System.out.println("\n\nvalue corresponding to key 21 removed: "
-                        + hashMapCustom.remove(21));
-           System.out.println("value corresponding to key 51 removed: "
-                        + hashMapCustom.remove(51));
- 
-           System.out.print("Displaying : ");
-           hashMapCustom.display();
- 
-    }
-}
- 
