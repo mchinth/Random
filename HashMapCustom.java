@@ -1,3 +1,28 @@
+// Overriding Equals() and HashCode() method to use emp class as a key 
+Class Employee{
+	private String name;
+	private int id;
+	Employee(int id, String name){
+		this.name = name;
+		this.id = id;
+	}
+
+	public bool equals(Object obj){
+		if(obj == NULL)
+			return false;
+		else if( this.getClass()!= obj.getClass()) // getClass returns class of the object
+			return false;
+		Employee emp = (Employee) obj;
+		return this.id.equals(emp.id) && this.name.equals(emp.name); // here equals :for int and string class equals method is overriden by java API 
+	}
+
+	public int hashCode(){
+		return id.hashCode() + name.hashCode();
+	}
+}
+
+
+
 //Hash Map custom implementation in Java 
 class HashMapCustom<K, V>{
 	private Entry<K,V> [] table; // bucket of type entry- array
